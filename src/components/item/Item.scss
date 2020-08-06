@@ -1,0 +1,30 @@
+@import "src/styles/colors";
+
+.shopping_cart {
+  &-item {
+    &-wrapper {
+      display: flex;
+      max-width: 50rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+    &-image {
+      height: 4rem;
+      width: 4rem;
+    }
+    &-name {
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    &-button {
+      border: none;
+      background-color: transparent;
+      padding: 1rem;
+      margin: 0;
+      cursor: pointer;
+      font-size: 2rem;
+    }
+  }
+}

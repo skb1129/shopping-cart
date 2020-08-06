@@ -38,7 +38,7 @@ export function CartProvider({ children }: Props) {
       const newItems = [...items];
       const selectedItem = newItems.find((item) => item.id === id);
       if (!selectedItem) return;
-      selectedItem.quantity = quantity;
+      selectedItem.quantity = quantity > 0 ? quantity : 0;
       setItems(newItems);
     },
     [items, setItems]
