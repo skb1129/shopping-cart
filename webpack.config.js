@@ -62,21 +62,6 @@ module.exports = ({ mode, server } = { mode: MODE.DEV, server: "local" }) => ({
     filename: "js/[name].[hash].js",
     publicPath: "/",
   },
-  optimization: {
-    splitChunks: {
-      automaticNameDelimiter: ".",
-      cacheGroups: {
-        modules: {
-          name: "modules",
-          test: /[\\/]node_modules[\\/]/,
-          chunks(chunk) {
-            return chunk.name === "application";
-          },
-          maxSize: 128000,
-        },
-      },
-    },
-  },
   plugins: [
     new CleanWebpackPlugin({ verbose: true }),
     new HTMLWebpackPlugin({
@@ -84,7 +69,7 @@ module.exports = ({ mode, server } = { mode: MODE.DEV, server: "local" }) => ({
       filename: "index.html",
       template: "public/index.html",
       favicon: "public/favicon.ico",
-      chunks: ["polyfill", "modules", "application"],
+      chunks: ["polyfill", "application"],
       hash: true,
       xhtml: true,
       inject: true,
