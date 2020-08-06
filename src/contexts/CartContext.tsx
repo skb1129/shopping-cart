@@ -3,10 +3,12 @@ import { Item, ItemType } from "../models";
 import { getItems } from "../api/getItems";
 
 interface CartState {
+  isLoading: boolean;
   items?: Item[];
   deleteItem?: any;
   updateQuantity?: any;
   total?: any;
+  reset?: any;
 }
 
 const CartContext = React.createContext<CartState>({});
@@ -17,10 +19,16 @@ interface Props {
   children: any;
 }
 export function CartProvider({ children }: Props) {
+  const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState<Item[]>([]);
 
+  const synchronise = async () => {
+    !isLoading && setIsLoading(true);
+    setItems(await getItems());
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const synchronise = async () => setItems(await getItems());
     synchronise();
   }, []);
 
@@ -28,6 +36,11 @@ export function CartProvider({ children }: Props) {
     if (!items?.length) return;
     sessionStorage.setItem("cart", JSON.stringify(items));
   }, [items]);
+
+  const reset = () => {
+    sessionStorage.clear();
+    synchronise();
+  };
 
   const deleteItem = useCallback((id: string) => setItems((prevItems) => prevItems.filter((item) => item.id !== id)), [
     setItems,
@@ -61,7 +74,7 @@ export function CartProvider({ children }: Props) {
   }, [items]);
 
   return (
-    <CartContext.Provider value={{ items, deleteItem, updateQuantity, total: getSummary() }}>
+    <CartContext.Provider value={{ isLoading, items, deleteItem, updateQuantity, total: getSummary(), reset }}>
       {children}
     </CartContext.Provider>
   );

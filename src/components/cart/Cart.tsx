@@ -14,8 +14,10 @@ function Cart() {
     column1: "shopping_cart-cart-column1",
     column2: "shopping_cart-cart-column2",
     button: "shopping_cart-cart-button",
+    reset: "shopping_cart-cart-reset",
   };
-  const { items, total, deleteItem, updateQuantity } = useCartContext();
+  const { isLoading, reset, items, total, deleteItem, updateQuantity } = useCartContext();
+  if (isLoading) return null;
   return (
     <div className={classes.wrapper}>
       <div className={classNames(classes.row, classes.rowHead)}>
@@ -23,23 +25,29 @@ function Cart() {
         <div className={classes.column2}>Qty</div>
         <div className={classes.column2}>Price</div>
       </div>
-      {items.map((item) => (
-        <div key={item.id} className={classes.row}>
-          <div className={classes.column1}>
-            <Item name={item.name} img_url={item.img_url} deleteAction={() => deleteItem(item.id)} />
+      {items?.length ? (
+        items.map((item) => (
+          <div key={item.id} className={classes.row}>
+            <div className={classes.column1}>
+              <Item name={item.name} img_url={item.img_url} deleteAction={() => deleteItem(item.id)} />
+            </div>
+            <div className={classes.column2}>
+              <button className={classes.button} onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                -
+              </button>
+              <span>{item.quantity}</span>
+              <button className={classes.button} onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                +
+              </button>
+            </div>
+            <div className={classes.column2}>${item.price}</div>
           </div>
-          <div className={classes.column2}>
-            <button className={classes.button} onClick={() => updateQuantity(item.id, item.quantity - 1)}>
-              -
-            </button>
-            <span>{item.quantity}</span>
-            <button className={classes.button} onClick={() => updateQuantity(item.id, item.quantity + 1)}>
-              +
-            </button>
-          </div>
-          <div className={classes.column2}>${item.price}</div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <button className={classes.reset} onClick={reset}>
+          Reset Cart
+        </button>
+      )}
     </div>
   );
 }

@@ -32,5 +32,14 @@
       cursor: pointer;
       font-size: 2rem;
     }
+    &-reset {
+      border: none;
+      background-color: $highlight;
+      padding: 1rem;
+      margin: 2rem;
+      cursor: pointer;
+      font-size: 2rem;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
   }
 }
