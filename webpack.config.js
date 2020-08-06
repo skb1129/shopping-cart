@@ -80,7 +80,7 @@ module.exports = ({ mode, server } = { mode: MODE.DEV, server: "local" }) => ({
   plugins: [
     new CleanWebpackPlugin({ verbose: true }),
     new HTMLWebpackPlugin({
-      title: "React Application",
+      title: "Shopping Cart",
       filename: "index.html",
       template: "public/index.html",
       favicon: "public/favicon.ico",
@@ -89,7 +89,6 @@ module.exports = ({ mode, server } = { mode: MODE.DEV, server: "local" }) => ({
       xhtml: true,
       inject: true,
     }),
-    new CopyPlugin({ patterns: [{ from: "*.png", context: "public" }] }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
       chunkFilename: "css/[id].css",

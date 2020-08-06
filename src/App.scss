@@ -1,38 +1,9 @@
-@import "./styles/colors";
+@import "src/styles/colors";
 
-.app {
-  &__wrapper {
+.shopping_cart {
+  &-wrapper {
     flex: 1 1 auto;
     display: flex;
     padding: 2rem;
-  }
-  &__header {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  &__logo {
-    height: 10rem;
-    margin: 2rem;
-    animation: logo-spin infinite 5s linear;
-  }
-  &__text {
-    font-size: 2rem;
-    color: $textPrimary;
-  }
-  &__link {
-    font-size: 2rem;
-    font-weight: bolder;
-  }
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
