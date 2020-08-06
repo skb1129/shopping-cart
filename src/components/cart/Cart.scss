@@ -3,26 +3,26 @@
 .shopping_cart {
   &-cart {
     &-wrapper {
+      flex: 1 1 50rem;
       margin: 2rem;
     }
     &-row {
       display: flex;
       align-items: center;
       padding: 2rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
       &-head {
+        font-size: 2rem;
         font-weight: 300;
-        border-top: 1px solid $textSecondary;
-        border-bottom: 1px solid $textSecondary;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
       }
     }
     &-column1 {
       flex: 1 1 auto;
-      font-size: 2rem;
     }
     &-column2 {
       flex: 12rem 0 1;
-      font-size: 2rem;
     }
     &-button {
       border: none;

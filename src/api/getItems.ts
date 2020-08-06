@@ -13,7 +13,7 @@ export async function getItems(): Promise<Item[]> {
     data.forEach((item) => {
       if (item.quantity) return;
       if (item.quantity === 0) return;
-      item.quantity = 0;
+      item.quantity = 1;
     });
   } catch (e) {
     console.log(e);

@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./components/header/Header";
 import { CartProvider } from "./contexts/CartContext";
 import Cart from "./components/cart/Cart";
+import Summary from "./components/summary/Summary";
 
 import "./App.scss";
 
@@ -12,9 +13,10 @@ function App() {
   };
   return (
     <CartProvider>
+      <Header />
       <div data-testid="app" className={styles.wrapper}>
-        <Header />
         <Cart />
+        <Summary />
       </div>
     </CartProvider>
   );
