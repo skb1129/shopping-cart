@@ -11,9 +11,11 @@ function Header() {
     title: "shopping_cart-header-title",
   };
   return (
-    <div className={classes.wrapper}>
+    <div data-testid="header" className={classes.wrapper}>
       {icons.backArrow({ className: classes.icon })}
-      <h1 className={classes.title}>Order Summary</h1>
+      <h1 data-testid="header-title" className={classes.title}>
+        Order Summary
+      </h1>
     </div>
   );
 }

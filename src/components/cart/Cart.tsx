@@ -19,9 +19,9 @@ function Cart() {
   const { isLoading, reset, items, total, deleteItem, updateQuantity } = useCartContext();
   if (isLoading) return null;
   return (
-    <div className={classes.wrapper}>
-      <div className={classNames(classes.row, classes.rowHead)}>
-        <div className={classes.column1}>Items ({total.items})</div>
+    <div data-testid="cart" className={classes.wrapper}>
+      <div data-testid="cart-head" className={classNames(classes.row, classes.rowHead)}>
+        <div className={classes.column1}>Items({total.items})</div>
         <div className={classes.column2}>Qty</div>
         <div className={classes.column2}>Price</div>
       </div>

@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
-import { Item, ItemType, Total } from "../models";
+import { Item, Total } from "../models";
 import { getItems } from "../api";
+import { getTotal } from "../utils";
 
 interface CartState {
   isLoading?: boolean;
   items?: Item[];
-  deleteItem?: (id: string) => void;
-  updateQuantity?: (id: string, quantity: number) => void;
+  deleteItem?: (id: number) => void;
+  updateQuantity?: (id: number, quantity: number) => void;
   total?: Total;
   reset?: () => void;
 }
@@ -42,12 +43,12 @@ export function CartProvider({ children }: Props) {
     synchronise();
   };
 
-  const deleteItem = useCallback((id: string) => setItems((prevItems) => prevItems.filter((item) => item.id !== id)), [
+  const deleteItem = useCallback((id: number) => setItems((prevItems) => prevItems.filter((item) => item.id !== id)), [
     setItems,
   ]);
 
   const updateQuantity = useCallback(
-    (id: string, quantity: number) => {
+    (id: number, quantity: number) => {
       const newItems = [...items];
       const selectedItem = newItems.find((item) => item.id === id);
       if (!selectedItem) return;
@@ -57,21 +58,7 @@ export function CartProvider({ children }: Props) {
     [items, setItems]
   );
 
-  const getSummary = useCallback(() => {
-    const total = {
-      items: 0,
-      price: 0,
-      discount: 0,
-      typeDiscount: 0,
-    };
-    items.forEach((item) => {
-      total.items += item.quantity;
-      total.price += item.price * item.quantity;
-      total.discount += item.discount * item.quantity;
-      if (item.type === ItemType.FICTION) total.typeDiscount += item.price * item.quantity * 0.15;
-    });
-    return total;
-  }, [items]);
+  const getSummary = useCallback(() => getTotal(items), [items]);
 
   return (
     <CartContext.Provider value={{ isLoading, items, deleteItem, updateQuantity, total: getSummary(), reset }}>

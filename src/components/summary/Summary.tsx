@@ -12,7 +12,7 @@ function Summary() {
   };
   const { total } = useCartContext();
   return (
-    <div className={classes.wrapper}>
+    <div data-testid="summary" className={classes.wrapper}>
       <h3 className={classes.title}>Total</h3>
       <p className={classes.field}>
         <span>Items({total.items})</span>

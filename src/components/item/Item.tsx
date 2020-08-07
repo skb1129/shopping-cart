@@ -15,10 +15,10 @@ function Item({ name, img_url, deleteAction }: Props) {
     button: "shopping_cart-item-button",
   };
   return (
-    <div className={classes.wrapper}>
+    <div data-testid="item" className={classes.wrapper}>
       <img className={classes.image} src={img_url} alt={name} />
       <span className={classes.name}>{name}</span>
-      <button className={classes.button} onClick={deleteAction}>
+      <button data-testid="item-button" className={classes.button} onClick={deleteAction}>
         X
       </button>
     </div>
