@@ -5,7 +5,7 @@ import "./Item.scss";
 interface Props {
   name: string;
   img_url: string;
-  deleteAction: any;
+  deleteAction: () => void;
 }
 function Item({ name, img_url, deleteAction }: Props) {
   const classes = {

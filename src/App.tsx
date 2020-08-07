@@ -14,7 +14,7 @@ function App() {
   return (
     <CartProvider>
       <Header />
-      <div data-testid="app" className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <Cart />
         <Summary />
       </div>

@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
-import { Item, ItemType } from "../models";
-import { getItems } from "../api/getItems";
+import { Item, ItemType, Total } from "../models";
+import { getItems } from "../api";
 
 interface CartState {
-  isLoading: boolean;
+  isLoading?: boolean;
   items?: Item[];
-  deleteItem?: any;
-  updateQuantity?: any;
-  total?: any;
-  reset?: any;
+  deleteItem?: (id: string) => void;
+  updateQuantity?: (id: string, quantity: number) => void;
+  total?: Total;
+  reset?: () => void;
 }
 
 const CartContext = React.createContext<CartState>({});
